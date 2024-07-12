@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom/client';
 import { ConfigProvider } from 'antd';
-import Notification from './components/notification/Notification.tsx';
 import App from './App.tsx';
 import './index.css';
 import StoreProvider from './StoreProvider.tsx';
@@ -9,20 +8,23 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <StoreProvider>
     <ConfigProvider
       theme={{
-        components: {},
+        components: {
+          Menu: {
+            itemSelectedBg: '#004aad',
+            itemSelectedColor: '#ffffff',
+          }
+        },
         token: {
           // Seed Token
-          colorPrimary: '#0E2954',
-          colorBorderBg: '#0E2954',
-          colorIcon: '#0E2954',
-          colorTextBase: '#0E2954',
+          colorPrimary: '#004aad',
+          colorBorderBg: '#004aad',
+          colorIcon: '#004aad',
+          colorTextBase: '#004aad',
           colorError: '#FF6961',
         },
       }}
     >
-      <Notification>
-        <App />
-      </Notification>
+      <App />
     </ConfigProvider>
   </StoreProvider>,
 );
