@@ -1,22 +1,22 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface ReloadState {
-    isLoadingPage: boolean;
+  isLoadingPage: boolean;
 }
 
 const initialState: ReloadState = {
-    isLoadingPage: false,
+  isLoadingPage: false,
 };
 
 export const reloadSlice = createSlice({
-    name: 'reload',
-    initialState,
-    reducers: {
-        updateIsLoadingPage: (state, action: PayloadAction<boolean>) => {
-            state.isLoadingPage = action.payload;
-        },
-        resetStateReload: () => initialState,
+  name: 'reload',
+  initialState,
+  reducers: {
+    updateIsLoadingPage: (state, action: PayloadAction<boolean>) => {
+      state.isLoadingPage = action.payload;
     },
+    resetStateReload: () => initialState,
+  },
 });
 
 export default reloadSlice.reducer;

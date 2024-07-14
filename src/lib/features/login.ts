@@ -3,11 +3,13 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 export interface LoginState {
   isLoadingForm: boolean;
   isLoadingConnect: boolean;
+  width: number;
 }
 
 const initialState: LoginState = {
   isLoadingForm: false,
   isLoadingConnect: false,
+  width: screen.width,
 };
 
 export const loginSlice = createSlice({
@@ -20,14 +22,13 @@ export const loginSlice = createSlice({
     updateIsLoadingConnect: (state, action: PayloadAction<boolean>) => {
       state.isLoadingConnect = action.payload;
     },
+    updateWidth: (state, action: PayloadAction<number>) => {
+      state.width = action.payload;
+    },
     resetStateLogin: () => initialState,
   },
 });
 
 export default loginSlice.reducer;
 
-export const {
-  updateIsLoadingForm,
-  updateIsLoadingConnect,
-  resetStateLogin,
-} = loginSlice.actions;
+export const { updateIsLoadingForm, updateIsLoadingConnect, updateWidth, resetStateLogin } = loginSlice.actions;

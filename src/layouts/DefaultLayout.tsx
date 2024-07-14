@@ -1,6 +1,6 @@
 import { Layout, theme } from 'antd';
 import React from 'react';
-import HeaderLayout from './components/HeaderLayout';
+import HeaderLayout from './components/header/HeaderLayout';
 
 export interface IDefaultLayout {
   children: React.ReactNode;
@@ -10,12 +10,14 @@ const { Content } = Layout;
 
 const DefaultLayout: React.FC<IDefaultLayout> = ({ children }) => {
   const {
-    token: { colorBgContainer }
+    token: { colorBgContainer },
   } = theme.useToken();
   return (
     <Layout>
       <HeaderLayout />
-      <Content style={{ height: 'calc(100vh - 64px)', backgroundColor: colorBgContainer }}>{children}</Content>
+      <Content style={{ height: 'calc(100vh - 64px)', overflowY: 'auto', backgroundColor: colorBgContainer }}>
+        {children}
+      </Content>
     </Layout>
   );
 };

@@ -11,6 +11,9 @@ import {
 } from '../../lib/features/listRoom';
 import { useListRoom } from '../../utils/useListRoom';
 import { ISelected } from '../../interface/ISelected';
+import { Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { PlusOutlined } from '@ant-design/icons';
 
 const mock: ISelected[] = [
   { value: 'jack', label: 'Jack' },
@@ -18,8 +21,9 @@ const mock: ISelected[] = [
   { value: 'Yiminghe', label: 'yiminghe' },
   { value: 'disabled', label: 'Disabled', disabled: true },
 ];
-const Home: React.FC = () => {
+const MyRoom: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { fetchData } = useListRoom();
   React.useEffect(() => {
     const initData = () => {
@@ -37,9 +41,12 @@ const Home: React.FC = () => {
   return (
     <>
       <Filter />
-      <ListRoom title="DANH SÁCH PHÒNG" fetchData={fetchData} />
+      <Button icon={<PlusOutlined />} className=" mt-[24px] mx-[48px]" size="large" onClick={() => navigate('/create')}>
+        Thêm phòng mới
+      </Button>
+      <ListRoom isMyAccount={true} title="DANH SÁCH PHÒNG QUẢN LÝ" fetchData={fetchData} />
     </>
   );
 };
 
-export default Home;
+export default MyRoom;

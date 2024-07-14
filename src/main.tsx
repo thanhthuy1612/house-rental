@@ -10,9 +10,21 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       theme={{
         components: {
           Menu: {
-            itemSelectedBg: '#004aad',
+            itemSelectedBg: '#80e823',
             itemSelectedColor: '#ffffff',
-          }
+            colorPrimary: '#80e823',
+          },
+          Button: {
+            colorPrimaryActive: '#80e823',
+          },
+          Select: {
+            colorPrimary: '#80e823',
+            optionSelectedBg: '#004aad',
+            optionSelectedColor: '#ffffff',
+          },
+          Input: {
+            colorPrimary: '#80e823',
+          },
         },
         token: {
           // Seed Token

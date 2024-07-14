@@ -3,6 +3,7 @@ import notificationSlice from './features/notification';
 import reloadSlice from './features/reload';
 import loginSlice from './features/login';
 import userSlice from './features/user';
+import listRoomSlice from './features/listRoom';
 
 export const makeStore = () => {
   return configureStore({
@@ -11,6 +12,7 @@ export const makeStore = () => {
       reload: reloadSlice,
       login: loginSlice,
       user: userSlice,
+      listRoom: listRoomSlice,
     },
   });
 };

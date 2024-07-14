@@ -1,6 +1,6 @@
-import { Flex, Layout, theme } from 'antd';
+import { Layout, theme } from 'antd';
 import React from 'react';
-import HeaderLayout from './components/HeaderLayout';
+import HeaderLayout from './components/header/HeaderLayout';
 import Breadcrumb, { ItemType } from 'antd/es/breadcrumb/Breadcrumb';
 
 export interface ISettingLayout {
@@ -10,9 +10,9 @@ export interface ISettingLayout {
 const { Content } = Layout;
 
 const SettingLayout: React.FC<ISettingLayout> = ({ children }) => {
-  const [breadcrumb, setBreadcrumb] = React.useState<ItemType[]>()
+  const [breadcrumb, setBreadcrumb] = React.useState<ItemType[]>();
   const {
-    token: { colorBgContainer, borderRadiusLG }
+    token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
   const items = [
@@ -22,43 +22,41 @@ const SettingLayout: React.FC<ISettingLayout> = ({ children }) => {
     },
     {
       key: 'password',
-      label: 'Password & Email',
+      label: 'Mật khẩu',
     },
-
   ];
 
   React.useEffect(() => {
     const getBreadcrumb = () => {
-      let breadcrumbArray: any[] = items
-      const arrayPath = location.pathname.split('/settings/')
-      const result: ItemType[] = arrayPath[1].split('/').reduce((res: ItemType[], name: string) => {
-        const filter = breadcrumbArray.find(item => item?.key === name)
-        if (filter) {
-          breadcrumbArray = filter?.children
-          res.push({
-            title: filter?.label
-          })
-        }
-        return res
-      }, [
-        {
-          title: 'Cài đặt'
-        }
-      ])
-      setBreadcrumb(result)
-    }
-    getBreadcrumb()
+      let breadcrumbArray: any[] = items;
+      const arrayPath = location.pathname.split('/settings/');
+      const result: ItemType[] = arrayPath[1].split('/').reduce(
+        (res: ItemType[], name: string) => {
+          const filter = breadcrumbArray.find((item) => item?.key === name);
+          if (filter) {
+            breadcrumbArray = filter?.children;
+            res.push({
+              title: filter?.label,
+            });
+          }
+          return res;
+        },
+        [
+          {
+            title: 'Cài đặt',
+          },
+        ],
+      );
+      setBreadcrumb(result);
+    };
+    getBreadcrumb();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname])
+  }, [location.pathname]);
   return (
     <Layout>
       <HeaderLayout />
-      <Content style={{ padding: '0 48px', height: 'calc(100vh - 64px)' }}>
-        <Breadcrumb
-          className="py-[16px]"
-          items={breadcrumb}
-        >
-        </Breadcrumb>
+      <Content style={{ padding: '0 48px', height: 'calc(100vh - 64px)' }} className=" bg-borderHeader overflow-y-auto">
+        <Breadcrumb className="py-[16px]" items={breadcrumb}></Breadcrumb>
         <div
           style={{
             margin: 0,
@@ -66,9 +64,7 @@ const SettingLayout: React.FC<ISettingLayout> = ({ children }) => {
             borderRadius: borderRadiusLG,
           }}
         >
-          <div>
-            {children}
-          </div>
+          <div>{children}</div>
         </div>
       </Content>
     </Layout>

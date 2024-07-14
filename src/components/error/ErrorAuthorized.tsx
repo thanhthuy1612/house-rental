@@ -8,9 +8,9 @@ const ErrorAuthorized: React.FC = () => {
     <Result
       status="403"
       title="403"
-      subTitle="Sorry, you are not authorized to access this page."
+      subTitle="Xin lỗi, bạn không được phép truy cập trang này."
       extra={
-        <Button type="primary" onClick={() => navigate('/')}>
+        <Button type="primary" className='hover:!bg-colorSelect' onClick={() => navigate('/')}>
           Back Home
         </Button>
       }

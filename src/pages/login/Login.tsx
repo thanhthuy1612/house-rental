@@ -3,10 +3,11 @@ import { Flex, Menu, type MenuProps } from 'antd';
 import { LoginOutlined, UserAddOutlined } from '@ant-design/icons';
 import FormLogin from './components/FormLogin';
 import FormRegister from './components/FormRegister';
+import Label from '../../components/label/Label';
 
 enum LoginMenu {
   LOGIN = 0,
-  REGISTER = 1
+  REGISTER = 1,
 }
 
 const Login: React.FC = () => {
@@ -20,18 +21,28 @@ const Login: React.FC = () => {
 
   const items: MenuProps['items'] = [
     {
-      label: 'Đăng nhập',
+      label: (
+        <Label
+          icon={<LoginOutlined />}
+          className=" pl-[15px]"
+          title="Đăng nhập"
+        />
+      ),
       key: LoginMenu.LOGIN,
-      icon: <LoginOutlined />,
       style: {
         flexBasis: '50%',
         borderTopLeftRadius: '0.75rem',
       },
     },
     {
-      label: 'Đăng ký',
+      label: (
+        <Label
+          icon={<UserAddOutlined />}
+          className=" pl-[15px]"
+          title="Đăng ký"
+        />
+      ),
       key: LoginMenu.REGISTER,
-      icon: <UserAddOutlined />,
       style: {
         flexBasis: '50%',
         borderTopRightRadius: '0.75rem',
@@ -46,29 +57,32 @@ const Login: React.FC = () => {
   const renderBody = () => {
     switch (auth) {
       case LoginMenu.LOGIN:
-        return <FormLogin />
+        return <FormLogin />;
       case LoginMenu.REGISTER:
-        return <FormRegister />
+        return <FormRegister />;
     }
-  }
+  };
 
   return (
-    <Flex className=" h-[100%] w-[100%] items-center justify-center bg-borderHeader">
-      <div className=" min-w-[600px] bg-bgColor rounded-xl shadow-2xl">
+    <Flex className=" min-h-[100%] w-[100%] items-center justify-center bg-borderHeader">
+      <div className=" min-w-[600px] my-[48px]  bg-bgColor rounded-xl shadow-2xl">
         <Menu
           defaultSelectedKeys={[LoginMenu.LOGIN.toString()]}
           onClick={onClickMenu}
-          style={{ display: 'flex', backgroundColor: 'transparent', borderTopLeftRadius: '0.75rem', borderTopRightRadius: '0.75rem' }}
+          style={{
+            display: 'flex',
+            backgroundColor: 'transparent',
+            borderTopLeftRadius: '0.75rem',
+            borderTopRightRadius: '0.75rem',
+          }}
           selectedKeys={[auth.toString()]}
           mode="horizontal"
           items={items}
         />
-        <Flex className=' flex-col my-[50px] mx-[100px] items-center justify-center'>
-          {renderBody()}
-        </Flex>
+        <Flex className=" flex-col my-[50px] mx-[100px] items-center justify-center">{renderBody()}</Flex>
       </div>
     </Flex>
   );
-}
+};
 
-export default Login
+export default Login;
