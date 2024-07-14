@@ -1,8 +1,9 @@
-import { Descriptions, Flex, Image, DescriptionsProps, Button } from 'antd';
+import { Descriptions, Flex, Image, DescriptionsProps } from 'antd';
 import React from 'react';
 import { useAppSelector } from '../../lib/hooks';
 import ItemProduct, { List } from './ItemProduct';
 import PriceProduct from './PriceProduct';
+import FormBook from './FormBook';
 
 const Product: React.FC = () => {
   const { width } = useAppSelector((state) => state.login);
@@ -45,7 +46,9 @@ const Product: React.FC = () => {
   ];
   return (
     <Flex className=" flex-col items-center py-[24px] px-[48px]">
-      <div className=" underline text-[25px] font-[600] pb-[48px]">Phòng 1234</div>
+      <Flex justify="center">
+        <div className=" mb-[24px] font-[600] text-[25px] border-b-[2px] border-colorSelect">Phòng 123</div>
+      </Flex>
       <Flex gap={20} wrap style={{ flexDirection: width < 500 ? 'column' : 'row' }}>
         <Image
           height={width < 800 ? 300 : 500}
@@ -58,9 +61,7 @@ const Product: React.FC = () => {
           <PriceProduct cost={4000000} electric=" 4k / kwh" water="150k" control="150k" bike="150k" />
         </Flex>
       </Flex>
-      <Button type="primary" size='large' className="hover:!bg-colorSelect my-[24px]">
-        Đặt lịch xem
-      </Button>
+      <FormBook />
     </Flex>
   );
 };

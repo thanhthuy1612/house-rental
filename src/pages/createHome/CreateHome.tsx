@@ -20,7 +20,7 @@ const CreateHome: React.FC = () => {
       wrapperCol={{ span: 14 }}
       className=" mx-[16px]"
     >
-      <Flex justify='center'>
+      <Flex justify="center">
         <div className=" mb-[24px] font-[600] text-[25px] border-[2px] w-fit border-colorSelect rounded-[15px] px-[10px] py-[5px]">
           Thêm phòng mới
         </div>
@@ -28,14 +28,30 @@ const CreateHome: React.FC = () => {
       <Form.Item name="name" label="Tên phòng" rules={[{ required: true, message: 'Vui lòng nhập thông tin!' }]}>
         <Input disabled={isDisable} placeholder="Tên phòng" size="large" />
       </Form.Item>
+      <Form.Item name="price" label="Giá thuê phòng" rules={[{ required: true, message: 'Vui lòng nhập thông tin!' }]}>
+        <InputNumber<number>
+          disabled={isDisable}
+          placeholder="0"
+          defaultValue={1000000}
+          formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          parser={(value) => value?.replace(/\$\s?|(,*)/g, '') as unknown as number}
+          addonAfter="VNĐ"
+          min={0}
+          size="large"
+        />
+      </Form.Item>
       <Form.Item name="description" label="Mô tả" rules={[{ required: true, message: 'Vui lòng nhập thông tin!' }]}>
         <Input disabled={isDisable} placeholder="Mô tả" size="large" />
       </Form.Item>
       <Form.Item name="address" label="Địa chỉ" rules={[{ required: true, message: 'Vui lòng nhập thông tin!' }]}>
         <Input disabled={isDisable} placeholder="Địa chỉ" size="large" />
       </Form.Item>
-      <Form.Item name="people" label="Số người" rules={[{ required: true, message: 'Vui lòng nhập thông tin!' }]}>
-        <InputNumber disabled={isDisable} placeholder="0" min={1} max={10} size="large" />
+      <Form.Item
+        name="people"
+        label="Số người tối đa"
+        rules={[{ required: true, message: 'Vui lòng nhập thông tin!' }]}
+      >
+        <InputNumber defaultValue={1} disabled={isDisable} placeholder="0" min={1} max={10} size="large" />
       </Form.Item>
       <Form.Item name="electric" label="Giá điện" rules={[{ required: true, message: 'Vui lòng nhập thông tin!' }]}>
         <Input disabled={isDisable} placeholder="Giá điện" size="large" />

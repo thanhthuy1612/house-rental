@@ -50,6 +50,10 @@ const Item: React.FC<IItem> = (props) => {
         : initState,
     );
   }, []);
+
+  const bookRoom = () => {
+    navigate(`/product/${1}`);
+  };
   return (
     <Flex
       className=" py-[10px] border-b-[2px] border-borderHeader"
@@ -63,7 +67,7 @@ const Item: React.FC<IItem> = (props) => {
           title={
             <div
               className=" cursor-pointer w-fit text-[20px] font-[600] underline hover:text-colorSelect"
-              onClick={() => navigate(`/product/${1}`)}
+              onClick={bookRoom}
             >
               {title}
             </div>
@@ -72,7 +76,7 @@ const Item: React.FC<IItem> = (props) => {
           column={{ xs: 1, sm: 1, md: 2 }}
         />
         {!isMyAccount ? (
-          <Button type="primary" className=" w-[250px] hover:!bg-colorSelect">
+          <Button type="primary" className=" w-[250px] hover:!bg-colorSelect" onClick={bookRoom}>
             <Flex>
               <div className=" px-[10px] border-r-bgColor border-r-[1px]">{(cost ?? 0) / 1000000} triệu / tháng</div>
               <div className=" px-[10px]">Đặt lịch xem</div>
